@@ -17,7 +17,6 @@ jobs:
     - name: Calculate version
       id: calc_version
       run: echo "::set-output name=version::$(docker run --rm -v "${PWD}:/repo" gittools/gitversion:latest /repo | jq -r .SemVer)"
-      # Note: This uses the gitversion Docker image for simplicity
 
     - name: Set up Git user
       run: |
