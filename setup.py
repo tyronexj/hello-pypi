@@ -2,8 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name="hello-pypi-tyronexj",
-    version="0.2",
+    use_scm_version=True,
     packages=find_packages(),
+    setup_requires=["setuptools_scm"],
     description="A simple greeting package",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
