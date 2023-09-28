@@ -1,0 +1,26 @@
+name: Auto tag version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Important to fetch all tags and branches
+
+      - name: Calculate version
+        id: calc_version
+        run: echo "::set-output name=version::$(docker run --rm -v "${PWD}:/repo" gittools/gitversion:latest /repo | jq -r .SemVer)"
+        # Note: This example uses the gitversion Docker image for simplicity
+
+      - name: Create Git tag
+        run: git tag ${{ steps.calc_version.outputs.version }}
+
+      - name: Push Git tags
+        run: git push origin ${{ steps.calc_version.outputs.version }}
