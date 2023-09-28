@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="hello-pypi-tyronexj",
-    version="0.1",
+    version="0.2",
     packages=find_packages(),
     description="A simple greeting package",
     long_description=open("README.md").read(),
