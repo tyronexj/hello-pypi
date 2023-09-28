@@ -22,5 +22,6 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
+          echo ${{ secrets.PYPI_TOKEN }}
           python -m build
-          twine upload dist/*
+          twine upload dist/* --verbose
